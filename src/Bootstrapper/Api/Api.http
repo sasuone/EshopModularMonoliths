@@ -1,6 +1,21 @@
-@Api_HostAddress = http://localhost:5144
+@Api_HostAddress = https://localhost:5050
 
-GET {{Api_HostAddress}}/
+
+### Get Products
+GET {{Api_HostAddress}}/products
 Accept: application/json
 
-###
+### Create Product
+
+POST {{Api_HostAddress}}/products
+Content-Type: application/json
+
+{
+  "Product": {
+    "Name": "New Product A",
+    "Category": ["c1", "c2"],
+    "Description": "Description Product A",
+    "ImageFile": "ImageFile Product A",
+    "Price": 199
+  }
+}
