@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Behaviors;
@@ -17,6 +16,7 @@ public static class CatalogModule
 		{
 			config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
 			config.AddOpenBehavior(typeof(ValidationBehavior<,>));
+			config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 		});
 		services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 		
