@@ -1,3 +1,3 @@
 ﻿namespace Catalog.Products.Features.GetProductById;
 
-public record GetProductByIdResponse(Product Product);
+public record GetProductByIdResponse(ProductDto Product);

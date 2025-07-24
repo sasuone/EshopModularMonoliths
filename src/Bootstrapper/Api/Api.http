@@ -19,3 +19,40 @@ Content-Type: application/json
     "Price": 199
   }
 }
+
+> {% client.global.set("new_product_id", response.body.id); %}
+
+### Update Product
+
+PUT {{Api_HostAddress}}/products
+Content-Type: application/json
+
+{
+  "Product": {
+    "Id": "{{new_product_id}}",
+    "Name": "New Product A Update",
+    "Category": ["c1", "c2", "c3"],
+    "Description": "Description Product A Update",
+    "ImageFile": "ImageFile Product A Update",
+    "Price": 300
+  }
+}
+
+### Get Products By Id
+
+GET {{Api_HostAddress}}/products/{{new_product_id}}
+Accept: application/json
+
+> {% client.global.set("new_product_category", response.body.product.category[0]); %}
+
+### Get Products By Category
+
+GET {{Api_HostAddress}}/products/category/{{new_product_category}}
+Accept: application/json
+
+### Delete Product
+
+DELETE {{Api_HostAddress}}/products/{{new_product_id}}
+Accept: application/json
+
+###
