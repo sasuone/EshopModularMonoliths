@@ -55,4 +55,33 @@ Accept: application/json
 DELETE {{Api_HostAddress}}/products/{{new_product_id}}
 Accept: application/json
 
+### Create Product With Error
+
+POST {{Api_HostAddress}}/products
+Content-Type: application/json
+
+{
+  "Product": {
+    "Category": ["c1", "c2"],
+    "Description": "Description Product A",
+    "ImageFile": "ImageFile Product A",
+    "Price": 199
+  }
+}
+
+### Update Product With Error
+
+PUT {{Api_HostAddress}}/products
+Content-Type: application/json
+
+{
+  "Product": {
+    "Name": "New Product A Update",
+    "Category": ["c1", "c2", "c3"],
+    "Description": "Description Product A Update",
+    "ImageFile": "ImageFile Product A Update",
+    "Price": 300
+  }
+}
+
 ###
