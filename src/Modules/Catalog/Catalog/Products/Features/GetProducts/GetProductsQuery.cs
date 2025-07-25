@@ -1,3 +1,3 @@
 ﻿namespace Catalog.Products.Features.GetProducts;
 
-public record GetProductsQuery() : IQuery<GetProductsResult>;
+public record GetProductsQuery(PaginationRequest PaginationRequest) : IQuery<GetProductsResult>;

@@ -5,8 +5,11 @@
 GET {{Api_HostAddress}}/products
 Accept: application/json
 
-### Create Product
+### Get Products With Pagination
+GET {{Api_HostAddress}}/products?PageIndex=2&PageSize=2
+Accept: application/json
 
+### Create Product
 POST {{Api_HostAddress}}/products
 Content-Type: application/json
 
@@ -23,7 +26,6 @@ Content-Type: application/json
 > {% client.global.set("new_product_id", response.body.id); %}
 
 ### Update Product
-
 PUT {{Api_HostAddress}}/products
 Content-Type: application/json
 
@@ -39,24 +41,20 @@ Content-Type: application/json
 }
 
 ### Get Products By Id
-
 GET {{Api_HostAddress}}/products/{{new_product_id}}
 Accept: application/json
 
 > {% client.global.set("new_product_category", response.body.product.category[0]); %}
 
 ### Get Products By Category
-
 GET {{Api_HostAddress}}/products/category/{{new_product_category}}
 Accept: application/json
 
 ### Delete Product
-
 DELETE {{Api_HostAddress}}/products/{{new_product_id}}
 Accept: application/json
 
 ### Create Product With Error
-
 POST {{Api_HostAddress}}/products
 Content-Type: application/json
 
@@ -70,7 +68,6 @@ Content-Type: application/json
 }
 
 ### Update Product With Error
-
 PUT {{Api_HostAddress}}/products
 Content-Type: application/json
 

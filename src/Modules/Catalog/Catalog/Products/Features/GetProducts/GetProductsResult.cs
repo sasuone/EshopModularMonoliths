@@ -1,3 +1,3 @@
 ﻿namespace Catalog.Products.Features.GetProducts;
 
-public record GetProductsResult(IEnumerable<ProductDto> Products);
+public record GetProductsResult(PaginatedResult<ProductDto> Products);
