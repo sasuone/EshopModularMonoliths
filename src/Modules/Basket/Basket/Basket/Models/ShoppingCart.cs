@@ -40,7 +40,7 @@ public class ShoppingCart : Aggregate<Guid>
 
 	public void RemoveItem(Guid productId)
 	{
-		ShoppingCartItem existingItem = Items.FirstOrDefault(x => x.ProductId == productId);
+		ShoppingCartItem? existingItem = Items.FirstOrDefault(x => x.ProductId == productId);
 		if (existingItem != null)
 		{
 			_items.Remove(existingItem);
