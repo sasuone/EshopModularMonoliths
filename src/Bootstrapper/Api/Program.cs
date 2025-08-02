@@ -3,9 +3,17 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((context, config) =>
 	config.ReadFrom.Configuration(context.Configuration));
 
-builder.Services
-	.AddCarterWithAssemblies(typeof(CatalogModule).Assembly);
+Assembly[] modules = [
+	typeof(CatalogModule).Assembly,
+	typeof(BasketModule).Assembly
+];
 
+// Common services: Carter, MediatR, FluentValidation
+builder.Services
+	.AddCarterWithAssemblies(modules)
+	.AddMediatR(modules);
+
+// Module services
 builder.Services
 	.AddCatalogModule(builder.Configuration)
 	.AddBasketModule(builder.Configuration)
