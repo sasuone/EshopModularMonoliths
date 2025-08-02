@@ -1,5 +1,5 @@
 @Api_HostAddress = https://localhost:5050
-
+@User_Name = daniel
 
 ### Get Products
 GET {{Api_HostAddress}}/products
@@ -80,5 +80,71 @@ Content-Type: application/json
     "Price": 300
   }
 }
+
+### Create Basket
+POST {{Api_HostAddress}}/basket
+Content-Type: application/json
+
+{
+  "ShoppingCart": {
+    "UserName": "{{User_Name}}",
+    "Items": [
+      {
+        "ProductId": "5334c996-8457-4cf0-815c-ed2b77c4ff61",
+        "Quantity": 2,
+        "Color": "Red",
+        "Price": 500,
+        "ProductName": "IPhone X"
+      },
+      {
+        "ProductId": "c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914",
+        "Quantity": 1,
+        "Color": "Blue",
+        "Price": 500,
+        "ProductName": "Samsung 10"
+      }
+    ]
+  }
+}
+
+### Get Basket
+GET {{Api_HostAddress}}/basket/{{User_Name}}
+Accept: application/json
+
+### Delete Basket
+DELETE {{Api_HostAddress}}/basket/{{User_Name}}
+Accept: application/json
+
+### Add Item Into Basket New
+POST {{Api_HostAddress}}/basket/{{User_Name}}/items
+Content-Type: application/json
+
+{
+  "ShoppingCartItem": {
+    "ProductId": "6ec1297b-ec0a-4aa1-be25-6726e3b51a27",
+    "Quantity": 3,
+    "Color": "Black",
+    "Price": 460,
+    "ProductName": "Xiaomi Mi"
+  }
+}
+
+### Add Item Into Basket Existing
+POST {{Api_HostAddress}}/basket/{{User_Name}}/items
+Content-Type: application/json
+
+{
+  "ShoppingCartItem": {
+    "ProductId": "5334c996-8457-4cf0-815c-ed2b77c4ff61",
+    "Quantity": 2,
+    "Color": "Red",
+    "Price": 500,
+    "ProductName": "IPhone X"
+  }
+}
+
+### Remove Item Into Basket Existing
+DELETE {{Api_HostAddress}}/basket/{{User_Name}}/items/5334c996-8457-4cf0-815c-ed2b77c4ff61
+Accept: application/json
 
 ###
