@@ -11,7 +11,12 @@ Assembly[] modules = [
 // Common services: Carter, MediatR, FluentValidation
 builder.Services
 	.AddCarterWithAssemblies(modules)
-	.AddMediatR(modules);
+	.AddMediatRWithAssemblies(modules);
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+	options.Configuration = builder.Configuration.GetConnectionString("Redis");
+});
 
 // Module services
 builder.Services
