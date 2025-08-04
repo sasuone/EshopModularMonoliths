@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Data;
@@ -11,6 +10,9 @@ public static class BasketModule
 {
 	public static IServiceCollection AddBasketModule(this IServiceCollection services, IConfiguration configuration)
 	{
+		services.AddScoped<IBasketRepository, BasketRepository>();
+		services.Decorate<IBasketRepository, CachedBasketRepository>();
+		
 		string? connectionString = configuration.GetConnectionString("Database");
 		
 		services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();

@@ -1,18 +1,11 @@
 ﻿namespace Basket.Basket.Features.AddItemIntoBasket;
 
-public class AddItemIntoBasketHandler(BasketDbContext dbContext)
+public class AddItemIntoBasketHandler(IBasketRepository repository)
 	: ICommandHandler<AddItemIntoBasketCommand, AddItemIntoBasketResult>
 {
 	public async Task<AddItemIntoBasketResult> Handle(AddItemIntoBasketCommand command, CancellationToken cancellationToken)
 	{
-		ShoppingCart? shoppingCart = await dbContext.ShoppingCarts
-			.Include(x => x.Items)
-			.SingleOrDefaultAsync(x => x.UserName == command.UserName, cancellationToken);
-
-		if (shoppingCart is null)
-		{
-			throw new BasketNotFoundException(command.UserName);
-		}
+		ShoppingCart shoppingCart = await repository.GetBasket(command.UserName, false, cancellationToken);
 		
 		shoppingCart.AddItem(
 			command.ShoppingCartItem.ProductId,
@@ -22,7 +15,7 @@ public class AddItemIntoBasketHandler(BasketDbContext dbContext)
 			command.ShoppingCartItem.ProductName
 		);
 		
-		await dbContext.SaveChangesAsync(cancellationToken);
+		await repository.SaveChangesAsync(shoppingCart.UserName, cancellationToken);
 
 		return new AddItemIntoBasketResult(shoppingCart.Id);
 	}

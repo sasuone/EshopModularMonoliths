@@ -1,14 +1,13 @@
 ﻿namespace Basket.Basket.Features.CreateBasket;
 
-public class CreateBasketHandler(BasketDbContext dbContext) 
+public class CreateBasketHandler(IBasketRepository repository) 
 	: ICommandHandler<CreateBasketCommand,  CreateBasketResult>
 {
 	public async Task<CreateBasketResult> Handle(CreateBasketCommand command, CancellationToken cancellationToken)
 	{
 		ShoppingCart shoppingCart = CreateNewBasket(command.ShoppingCart);
 		
-		dbContext.ShoppingCarts.Add(shoppingCart);
-		await dbContext.SaveChangesAsync(cancellationToken);
+		await repository.CreateBasket(shoppingCart, cancellationToken);
 		
 		return new CreateBasketResult(shoppingCart.Id);
 	}

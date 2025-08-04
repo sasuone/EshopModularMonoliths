@@ -1,20 +1,11 @@
 ﻿namespace Basket.Basket.Features.DeleteBasket;
 
-public class DeleteBasketHandler(BasketDbContext dbContext) 
+public class DeleteBasketHandler(IBasketRepository repository) 
 	: ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
 {
 	public async Task<DeleteBasketResult> Handle(DeleteBasketCommand command, CancellationToken cancellationToken)
 	{
-		ShoppingCart? shoppingCart = await dbContext.ShoppingCarts
-			.SingleOrDefaultAsync(x => x.UserName == command.UserName, cancellationToken);
-
-		if (shoppingCart is null)
-		{
-			throw new BasketNotFoundException(command.UserName);
-		}
-		
-		dbContext.Remove(shoppingCart);
-		await dbContext.SaveChangesAsync(cancellationToken);
+		await repository.DeleteBasket(command.UserName, cancellationToken);
 		
 		return new DeleteBasketResult(true);
 	}
