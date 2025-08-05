@@ -1,4 +1,7 @@
-﻿namespace Catalog.Products.Features.GetProducts;
+﻿using Catalog.Contracts.Products.Dtos;
+using Shared.Contracts.CQRS;
+
+namespace Catalog.Products.Features.GetProducts;
 
 public class GetProductsHandler(CatalogDbContext dbContext)
 	: IQueryHandler<GetProductsQuery, GetProductsResult>

@@ -1,4 +1,6 @@
-﻿namespace Catalog.Products.Features.DeleteProduct;
+﻿using Shared.Contracts.CQRS;
+
+namespace Catalog.Products.Features.DeleteProduct;
 
 public class DeleteProductHandler(CatalogDbContext dbContext)
 	: ICommandHandler<DeleteProductCommand,  DeleteProductResult>
