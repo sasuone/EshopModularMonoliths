@@ -18,6 +18,8 @@ builder.Services.AddStackExchangeRedisCache(options =>
 	options.Configuration = builder.Configuration.GetConnectionString("Redis");
 });
 
+builder.Services.AddMassTransitWithAssemblies(modules);
+
 // Module services
 builder.Services
 	.AddCatalogModule(builder.Configuration)

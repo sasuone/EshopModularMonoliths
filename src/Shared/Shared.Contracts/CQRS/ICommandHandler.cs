@@ -2,7 +2,7 @@
 
 namespace Shared.Contracts.CQRS;
 
-public interface IComandHandler<in TCommand> : ICommandHandler<TCommand, Unit>
+public interface ICommandHandler<in TCommand> : ICommandHandler<TCommand, Unit>
 	where TCommand : ICommand<Unit>
 {
 	
