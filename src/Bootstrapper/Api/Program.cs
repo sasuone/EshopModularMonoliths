@@ -18,7 +18,7 @@ builder.Services.AddStackExchangeRedisCache(options =>
 	options.Configuration = builder.Configuration.GetConnectionString("Redis");
 });
 
-builder.Services.AddMassTransitWithAssemblies(modules);
+builder.Services.AddMassTransitWithAssemblies(builder.Configuration, modules);
 
 // Module services
 builder.Services

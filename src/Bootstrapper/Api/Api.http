@@ -40,6 +40,25 @@ Content-Type: application/json
   }
 }
 
+### Update Product Price
+PUT {{Api_HostAddress}}/products
+Content-Type: application/json
+
+{
+  "Product": {
+    "Id": "5334c996-8457-4cf0-815c-ed2b77c4ff61",
+    "Name": "IPhone X",
+    "Category": ["category1"],
+    "Description": "Description Product IPhone X",
+    "ImageFile": "ImageFile_IPhone_X_Update",
+    "Price": 555
+  }
+}
+
+### Get Products By Id (5334c996-8457-4cf0-815c-ed2b77c4ff61)
+GET {{Api_HostAddress}}/products/5334c996-8457-4cf0-815c-ed2b77c4ff61
+Accept: application/json
+
 ### Get Products By Id
 GET {{Api_HostAddress}}/products/{{new_product_id}}
 Accept: application/json

@@ -7,6 +7,9 @@ services:
 
   distributed-cache:
     image: redis
+    
+  messagebus:
+    image: rabbitmq:management
 
 volumes:
   postgres_eshopdb:
